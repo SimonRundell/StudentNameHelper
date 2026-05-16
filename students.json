@@ -1,0 +1,30 @@
+﻿{
+    "Classes": [
+        {
+            "Id": "a1b2c3d4-0001-0001-0001-000000000001",
+            "Name": "T-Level Digital Y1",
+            "Students": [
+                { "Id": "s0000001-0000-0000-0000-000000000001", "FirstName": "Alice",     "LastName": "Thistlethwaite"  },
+                { "Id": "s0000001-0000-0000-0000-000000000002", "FirstName": "Ben",       "LastName": "Okafor-Williams" },
+                { "Id": "s0000001-0000-0000-0000-000000000003", "FirstName": "Charlotte", "LastName": "Brzezinska"      }
+            ]
+        },
+        {
+            "Id": "a1b2c3d4-0002-0002-0002-000000000002",
+            "Name": "BTEC L3 IT Y2",
+            "Students": [
+                { "Id": "s0000002-0000-0000-0000-000000000001", "FirstName": "Daniel",  "LastName": "Kowalczyk"  },
+                { "Id": "s0000002-0000-0000-0000-000000000002", "FirstName": "Fatima",  "LastName": "Al-Rashidi" },
+                { "Id": "s0000002-0000-0000-0000-000000000003", "FirstName": "Georgia", "LastName": "Mwangi"     }
+            ]
+        },
+        {
+            "Id": "a1b2c3d4-0003-0003-0003-000000000003",
+            "Name": "NCFE L2 Coding",
+            "Students": [
+                { "Id": "s0000003-0000-0000-0000-000000000001", "FirstName": "Harry",  "LastName": "Szczepanski" },
+                { "Id": "s0000003-0000-0000-0000-000000000002", "FirstName": "Imogen", "LastName": "Trevelyan"   }
+            ]
+        }
+    ]
+}
