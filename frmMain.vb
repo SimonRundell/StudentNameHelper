@@ -3,7 +3,7 @@ Imports System.Text
 
 Public Class frmMain
     Inherits Form
-    
+
     Private cboClass As ComboBox
     Private cboStudent As ComboBox
     Private rbFirstLast As RadioButton
@@ -35,7 +35,7 @@ Public Class frmMain
         Me.FormBorderStyle = FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.StartPosition = FormStartPosition.CenterScreen
-        Me.Font = New Font("Trebuchet MS", 9.0F, FontStyle.Regular)
+        Me.Font = New Font("Segoe UI", 9.0F, FontStyle.Regular)
 
         tipMain = New ToolTip()
 
@@ -88,7 +88,7 @@ Public Class frmMain
         lblHint.Location = New Point(72, 122)
         lblHint.Size = New Size(378, 16)
         lblHint.ForeColor = Color.Gray
-        lblHint.Font = New Font("Trebuchet MS", 7.5F, FontStyle.Italic)
+        lblHint.Font = New Font("Segoe UI", 8.0F, FontStyle.Italic)
 
         btnCopyStudent = New Button()
         btnCopyStudent.Text = "Copy Student Name"

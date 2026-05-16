@@ -32,7 +32,7 @@ Public Class frmManage
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.StartPosition = FormStartPosition.CenterParent
-        Me.Font = New Font("Trebuchet MS", 9.0F, FontStyle.Regular)
+        Me.Font = New Font("Segoe UI", 9.0F, FontStyle.Regular)
 
         Dim grpClasses As New GroupBox()
         grpClasses.Text = "Classes"
@@ -85,7 +85,7 @@ Public Class frmManage
         lblStudentCount.Location = New Point(10, 228)
         lblStudentCount.Size = New Size(318, 16)
         lblStudentCount.ForeColor = Color.Gray
-        lblStudentCount.Font = New Font("Trebuchet MS", 7.5F, FontStyle.Italic)
+        lblStudentCount.Font = New Font("Segoe UI", 8.0F, FontStyle.Italic)
 
         Dim lblFirst As New Label()
         lblFirst.Text = "First name:"
