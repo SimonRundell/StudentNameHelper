@@ -2,38 +2,38 @@
 Imports System.Text
 Imports System.Web.Script.Serialization
 
-''' &lt;summary&gt;
+''' <summary>
 ''' Handles loading and saving application data to/from JSON file using JavaScriptSerializer.
-''' &lt;/summary&gt;
+''' </summary>
 Public Class DataManager
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' The file path where application data is stored.
-    ''' &lt;/summary&gt;
+    ''' </summary>
     Private ReadOnly _filePath As String
 
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' The JSON serializer instance.
-    ''' &lt;/summary&gt;
+    ''' </summary>
     Private ReadOnly _serializer As JavaScriptSerializer
 
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Initializes a new instance of DataManager.
-    ''' &lt;/summary&gt;
-    ''' &lt;param name="filePath"&gt;The path to the JSON data file.&lt;/param&gt;
+    ''' </summary>
+    ''' <param name="filePath">The path to the JSON data file.</param>
     Public Sub New(filePath As String)
         _filePath = filePath
         _serializer = New JavaScriptSerializer()
     End Sub
 
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Loads application data from the JSON file.
-    ''' &lt;/summary&gt;
-    ''' &lt;returns&gt;The deserialized AppData object, or a new empty AppData if the file doesn't exist.&lt;/returns&gt;
-    ''' &lt;remarks&gt;
+    ''' </summary>
+    ''' <returns>The deserialized AppData object, or a new empty AppData if the file doesn't exist.</returns>
+    ''' <remarks>
     ''' Includes defensive null checks to guard against manual JSON edits.
     ''' If Classes is Nothing, initializes to empty list.
     ''' For each SchoolClass, if Students is Nothing, initializes to empty list.
-    ''' &lt;/remarks&gt;
+    ''' </remarks>
     Public Function Load() As AppData
         ' If file doesn't exist, return new empty AppData
         If Not File.Exists(_filePath) Then
@@ -60,10 +60,10 @@ Public Class DataManager
         Return data
     End Function
 
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Saves application data to the JSON file.
-    ''' &lt;/summary&gt;
-    ''' &lt;param name="data"&gt;The AppData object to serialize and save.&lt;/param&gt;
+    ''' </summary>
+    ''' <param name="data">The AppData object to serialize and save.</param>
     Public Sub Save(data As AppData)
         ' Serialize to JSON
         Dim json As String = _serializer.Serialize(data)

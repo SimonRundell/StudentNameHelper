@@ -1,27 +1,27 @@
-﻿''' &lt;summary&gt;
+﻿''' <summary>
 ''' Represents a student with unique identifier and name properties.
-''' &lt;/summary&gt;
+''' </summary>
 Public Class Student
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Gets or sets the unique GUID identifier for this student.
     ''' Set on creation and never changed.
-    ''' &lt;/summary&gt;
+    ''' </summary>
     Public Property Id As String
 
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Gets or sets the student's given name.
-    ''' &lt;/summary&gt;
+    ''' </summary>
     Public Property FirstName As String
 
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Gets or sets the student's family name.
-    ''' &lt;/summary&gt;
+    ''' </summary>
     Public Property LastName As String
 
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Returns a string representation of the student for use in dropdowns.
-    ''' &lt;/summary&gt;
-    ''' &lt;returns&gt;Student's full name in "FirstName LastName" format.&lt;/returns&gt;
+    ''' </summary>
+    ''' <returns>Student's full name in "FirstName LastName" format.</returns>
     Public Overrides Function ToString() As String
         Return $"{FirstName} {LastName}"
     End Function

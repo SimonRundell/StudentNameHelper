@@ -1,34 +1,34 @@
-﻿''' &lt;summary&gt;
+﻿''' <summary>
 ''' Represents a class (named SchoolClass to avoid collision with VB.NET reserved keyword).
 ''' Contains a unique identifier, display name, and ordered list of enrolled students.
-''' &lt;/summary&gt;
+''' </summary>
 Public Class SchoolClass
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Gets or sets the unique GUID identifier for this class.
-    ''' &lt;/summary&gt;
+    ''' </summary>
     Public Property Id As String
 
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Gets or sets the display name of the class, e.g., "T-Level Digital Y1".
-    ''' &lt;/summary&gt;
+    ''' </summary>
     Public Property Name As String
 
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Gets or sets the ordered list of students enrolled in this class.
-    ''' &lt;/summary&gt;
+    ''' </summary>
     Public Property Students As List(Of Student)
 
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Initializes a new instance of the SchoolClass with an empty student list.
-    ''' &lt;/summary&gt;
+    ''' </summary>
     Public Sub New()
         Students = New List(Of Student)()
     End Sub
 
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' Returns the class name for use in dropdowns.
-    ''' &lt;/summary&gt;
-    ''' &lt;returns&gt;The Name property value.&lt;/returns&gt;
+    ''' </summary>
+    ''' <returns>The Name property value.</returns>
     Public Overrides Function ToString() As String
         Return Name
     End Function

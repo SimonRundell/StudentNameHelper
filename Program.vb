@@ -1,11 +1,11 @@
-﻿''' &lt;summary&gt;
+﻿''' <summary>
 ''' Application entry point module.
-''' &lt;/summary&gt;
+''' </summary>
 Module Program
-    ''' &lt;summary&gt;
+    ''' <summary>
     ''' The main entry point for the application.
-    ''' &lt;/summary&gt;
-    &lt;STAThread&gt;
+    ''' </summary>
+    <STAThread>
     Sub Main()
         Application.EnableVisualStyles()
         Application.SetCompatibleTextRenderingDefault(False)
