@@ -4,19 +4,27 @@ Imports System.Text
 Public Class frmMain
     Inherits Form
 
-    Private cboClass As ComboBox
-    Private cboStudent As ComboBox
-    Private rbFirstLast As RadioButton
-    Private rbLastFirst As RadioButton
-    Private btnCopyStudent As Button
-    Private btnCopyAllNames As Button
-    Private txtFolderPath As TextBox
-    Private btnBrowseFolder As Button
-    Private btnCreateFolders As Button
-    Private btnManageData As Button
-    Private lblStatus As Label
+    Private WithEvents cboClass As ComboBox
+    Private WithEvents cboStudent As ComboBox
+    Private WithEvents rbFirstLast As RadioButton
+    Private WithEvents rbLastFirst As RadioButton
+    Private WithEvents btnCopyStudent As Button
+    Private WithEvents btnCopyAllNames As Button
+    Private WithEvents txtFolderPath As TextBox
+    Private WithEvents btnBrowseFolder As Button
+    Private WithEvents btnCreateFolders As Button
+    Private WithEvents btnManageData As Button
+    Private WithEvents lblStatus As Label
     Private tipMain As ToolTip
     Private _dataManager As DataManager
+    Private components As System.ComponentModel.IContainer
+    Friend WithEvents grpSelect As GroupBox
+    Friend WithEvents lblClass As Label
+    Friend WithEvents lblStudent As Label
+    Friend WithEvents lblFormat As Label
+    Friend WithEvents lblHint As Label
+    Friend WithEvents grpFolders As GroupBox
+    Friend WithEvents lblFolder As Label
     Private _appData As AppData
 
     Public Sub New()
@@ -30,144 +38,226 @@ Public Class frmMain
     End Function
 
     Private Sub InitializeComponent()
-        Me.Text = "Student Name Helper"
-        Me.ClientSize = New Size(480, 400)
-        Me.FormBorderStyle = FormBorderStyle.FixedSingle
+        Me.components = New System.ComponentModel.Container()
+        Me.tipMain = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btnCopyStudent = New System.Windows.Forms.Button()
+        Me.btnCopyAllNames = New System.Windows.Forms.Button()
+        Me.btnCreateFolders = New System.Windows.Forms.Button()
+        Me.grpSelect = New System.Windows.Forms.GroupBox()
+        Me.lblClass = New System.Windows.Forms.Label()
+        Me.cboClass = New System.Windows.Forms.ComboBox()
+        Me.lblStudent = New System.Windows.Forms.Label()
+        Me.cboStudent = New System.Windows.Forms.ComboBox()
+        Me.lblFormat = New System.Windows.Forms.Label()
+        Me.rbFirstLast = New System.Windows.Forms.RadioButton()
+        Me.rbLastFirst = New System.Windows.Forms.RadioButton()
+        Me.lblHint = New System.Windows.Forms.Label()
+        Me.grpFolders = New System.Windows.Forms.GroupBox()
+        Me.lblFolder = New System.Windows.Forms.Label()
+        Me.txtFolderPath = New System.Windows.Forms.TextBox()
+        Me.btnBrowseFolder = New System.Windows.Forms.Button()
+        Me.btnManageData = New System.Windows.Forms.Button()
+        Me.lblStatus = New System.Windows.Forms.Label()
+        Me.grpSelect.SuspendLayout()
+        Me.grpFolders.SuspendLayout()
+        Me.SuspendLayout()
+        '
+        'btnCopyStudent
+        '
+        Me.btnCopyStudent.Location = New System.Drawing.Point(72, 148)
+        Me.btnCopyStudent.Name = "btnCopyStudent"
+        Me.btnCopyStudent.Size = New System.Drawing.Size(158, 32)
+        Me.btnCopyStudent.TabIndex = 8
+        Me.btnCopyStudent.Text = "Copy Student Name"
+        Me.tipMain.SetToolTip(Me.btnCopyStudent, "Copies the selected student's name in the chosen format." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "First Last: ""John Smith" &
+        """  |  Last, First: ""Smith, John""")
+        '
+        'btnCopyAllNames
+        '
+        Me.btnCopyAllNames.Location = New System.Drawing.Point(240, 148)
+        Me.btnCopyAllNames.Name = "btnCopyAllNames"
+        Me.btnCopyAllNames.Size = New System.Drawing.Size(148, 32)
+        Me.btnCopyAllNames.TabIndex = 9
+        Me.btnCopyAllNames.Text = "Copy All Names"
+        Me.tipMain.SetToolTip(Me.btnCopyAllNames, "Copies every student in the selected class." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "First Last: one name per line (singl" &
+        "e Excel column)." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Last, First: Last[TAB]First per line (two Excel columns).")
+        '
+        'btnCreateFolders
+        '
+        Me.btnCreateFolders.Location = New System.Drawing.Point(94, 62)
+        Me.btnCreateFolders.Name = "btnCreateFolders"
+        Me.btnCreateFolders.Size = New System.Drawing.Size(148, 30)
+        Me.btnCreateFolders.TabIndex = 3
+        Me.btnCreateFolders.Text = "Create Folders"
+        Me.tipMain.SetToolTip(Me.btnCreateFolders, "Creates one subfolder per student inside the chosen parent folder." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "First Last: f" &
+        "older named ""John Smith""." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Last, First: folder named ""Smith John""." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Existing fol" &
+        "ders are silently skipped.")
+        '
+        'grpSelect
+        '
+        Me.grpSelect.Controls.Add(Me.lblClass)
+        Me.grpSelect.Controls.Add(Me.cboClass)
+        Me.grpSelect.Controls.Add(Me.lblStudent)
+        Me.grpSelect.Controls.Add(Me.cboStudent)
+        Me.grpSelect.Controls.Add(Me.lblFormat)
+        Me.grpSelect.Controls.Add(Me.rbFirstLast)
+        Me.grpSelect.Controls.Add(Me.rbLastFirst)
+        Me.grpSelect.Controls.Add(Me.lblHint)
+        Me.grpSelect.Controls.Add(Me.btnCopyStudent)
+        Me.grpSelect.Controls.Add(Me.btnCopyAllNames)
+        Me.grpSelect.Location = New System.Drawing.Point(10, 10)
+        Me.grpSelect.Name = "grpSelect"
+        Me.grpSelect.Size = New System.Drawing.Size(460, 210)
+        Me.grpSelect.TabIndex = 0
+        Me.grpSelect.TabStop = False
+        Me.grpSelect.Text = "Select Class & Student"
+        '
+        'lblClass
+        '
+        Me.lblClass.Location = New System.Drawing.Point(8, 28)
+        Me.lblClass.Name = "lblClass"
+        Me.lblClass.Size = New System.Drawing.Size(60, 20)
+        Me.lblClass.TabIndex = 0
+        Me.lblClass.Text = "Class:"
+        Me.lblClass.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'cboClass
+        '
+        Me.cboClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboClass.Location = New System.Drawing.Point(72, 25)
+        Me.cboClass.Name = "cboClass"
+        Me.cboClass.Size = New System.Drawing.Size(376, 23)
+        Me.cboClass.TabIndex = 1
+        '
+        'lblStudent
+        '
+        Me.lblStudent.Location = New System.Drawing.Point(8, 62)
+        Me.lblStudent.Name = "lblStudent"
+        Me.lblStudent.Size = New System.Drawing.Size(60, 20)
+        Me.lblStudent.TabIndex = 2
+        Me.lblStudent.Text = "Student:"
+        Me.lblStudent.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'cboStudent
+        '
+        Me.cboStudent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboStudent.Location = New System.Drawing.Point(72, 59)
+        Me.cboStudent.Name = "cboStudent"
+        Me.cboStudent.Size = New System.Drawing.Size(376, 23)
+        Me.cboStudent.TabIndex = 3
+        '
+        'lblFormat
+        '
+        Me.lblFormat.Location = New System.Drawing.Point(8, 98)
+        Me.lblFormat.Name = "lblFormat"
+        Me.lblFormat.Size = New System.Drawing.Size(60, 20)
+        Me.lblFormat.TabIndex = 4
+        Me.lblFormat.Text = "Format:"
+        Me.lblFormat.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'rbFirstLast
+        '
+        Me.rbFirstLast.Checked = True
+        Me.rbFirstLast.Location = New System.Drawing.Point(72, 96)
+        Me.rbFirstLast.Name = "rbFirstLast"
+        Me.rbFirstLast.Size = New System.Drawing.Size(90, 22)
+        Me.rbFirstLast.TabIndex = 5
+        Me.rbFirstLast.TabStop = True
+        Me.rbFirstLast.Text = "First Last"
+        '
+        'rbLastFirst
+        '
+        Me.rbLastFirst.Location = New System.Drawing.Point(168, 96)
+        Me.rbLastFirst.Name = "rbLastFirst"
+        Me.rbLastFirst.Size = New System.Drawing.Size(95, 22)
+        Me.rbLastFirst.TabIndex = 6
+        Me.rbLastFirst.Text = "Last, First"
+        '
+        'lblHint
+        '
+        Me.lblHint.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Italic)
+        Me.lblHint.ForeColor = System.Drawing.Color.Gray
+        Me.lblHint.Location = New System.Drawing.Point(72, 122)
+        Me.lblHint.Name = "lblHint"
+        Me.lblHint.Size = New System.Drawing.Size(378, 16)
+        Me.lblHint.TabIndex = 7
+        Me.lblHint.Text = "Copy All: 'First Last' - one name per line  |  'Last, First' - Last[TAB]First (tw" &
+    "o Excel columns)"
+        '
+        'grpFolders
+        '
+        Me.grpFolders.Controls.Add(Me.lblFolder)
+        Me.grpFolders.Controls.Add(Me.txtFolderPath)
+        Me.grpFolders.Controls.Add(Me.btnBrowseFolder)
+        Me.grpFolders.Controls.Add(Me.btnCreateFolders)
+        Me.grpFolders.Location = New System.Drawing.Point(10, 230)
+        Me.grpFolders.Name = "grpFolders"
+        Me.grpFolders.Size = New System.Drawing.Size(460, 108)
+        Me.grpFolders.TabIndex = 1
+        Me.grpFolders.TabStop = False
+        Me.grpFolders.Text = "Create Student Folders"
+        '
+        'lblFolder
+        '
+        Me.lblFolder.Location = New System.Drawing.Point(8, 28)
+        Me.lblFolder.Name = "lblFolder"
+        Me.lblFolder.Size = New System.Drawing.Size(82, 20)
+        Me.lblFolder.TabIndex = 0
+        Me.lblFolder.Text = "Parent folder:"
+        Me.lblFolder.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtFolderPath
+        '
+        Me.txtFolderPath.Location = New System.Drawing.Point(94, 25)
+        Me.txtFolderPath.Name = "txtFolderPath"
+        Me.txtFolderPath.ReadOnly = True
+        Me.txtFolderPath.Size = New System.Drawing.Size(270, 23)
+        Me.txtFolderPath.TabIndex = 1
+        '
+        'btnBrowseFolder
+        '
+        Me.btnBrowseFolder.Location = New System.Drawing.Point(372, 24)
+        Me.btnBrowseFolder.Name = "btnBrowseFolder"
+        Me.btnBrowseFolder.Size = New System.Drawing.Size(78, 26)
+        Me.btnBrowseFolder.TabIndex = 2
+        Me.btnBrowseFolder.Text = "Browse..."
+        '
+        'btnManageData
+        '
+        Me.btnManageData.Location = New System.Drawing.Point(10, 350)
+        Me.btnManageData.Name = "btnManageData"
+        Me.btnManageData.Size = New System.Drawing.Size(230, 32)
+        Me.btnManageData.TabIndex = 2
+        Me.btnManageData.Text = "Manage Classes and Students..."
+        '
+        'lblStatus
+        '
+        Me.lblStatus.ForeColor = System.Drawing.Color.DimGray
+        Me.lblStatus.Location = New System.Drawing.Point(7, 397)
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(460, 18)
+        Me.lblStatus.TabIndex = 3
+        Me.lblStatus.Text = "Ready."
+        Me.lblStatus.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'frmMain
+        '
+        Me.ClientSize = New System.Drawing.Size(480, 424)
+        Me.Controls.Add(Me.grpSelect)
+        Me.Controls.Add(Me.grpFolders)
+        Me.Controls.Add(Me.btnManageData)
+        Me.Controls.Add(Me.lblStatus)
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
-        Me.StartPosition = FormStartPosition.CenterScreen
-        Me.Font = New Font("Segoe UI", 9.0F, FontStyle.Regular)
+        Me.Name = "frmMain"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Student Name Helper"
+        Me.grpSelect.ResumeLayout(False)
+        Me.grpFolders.ResumeLayout(False)
+        Me.grpFolders.PerformLayout()
+        Me.ResumeLayout(False)
 
-        tipMain = New ToolTip()
-
-        Dim grpSelect As New GroupBox()
-        grpSelect.Text = "Select Class & Student"
-        grpSelect.Location = New Point(10, 10)
-        grpSelect.Size = New Size(460, 210)
-
-        Dim lblClass As New Label()
-        lblClass.Text = "Class:"
-        lblClass.Location = New Point(8, 28)
-        lblClass.Size = New Size(60, 20)
-        lblClass.TextAlign = ContentAlignment.MiddleRight
-
-        cboClass = New ComboBox()
-        cboClass.Location = New Point(72, 25)
-        cboClass.Size = New Size(376, 24)
-        cboClass.DropDownStyle = ComboBoxStyle.DropDownList
-
-        Dim lblStudent As New Label()
-        lblStudent.Text = "Student:"
-        lblStudent.Location = New Point(8, 62)
-        lblStudent.Size = New Size(60, 20)
-        lblStudent.TextAlign = ContentAlignment.MiddleRight
-
-        cboStudent = New ComboBox()
-        cboStudent.Location = New Point(72, 59)
-        cboStudent.Size = New Size(376, 24)
-        cboStudent.DropDownStyle = ComboBoxStyle.DropDownList
-
-        Dim lblFormat As New Label()
-        lblFormat.Text = "Format:"
-        lblFormat.Location = New Point(8, 98)
-        lblFormat.Size = New Size(60, 20)
-        lblFormat.TextAlign = ContentAlignment.MiddleRight
-
-        rbFirstLast = New RadioButton()
-        rbFirstLast.Text = "First Last"
-        rbFirstLast.Location = New Point(72, 96)
-        rbFirstLast.Size = New Size(90, 22)
-        rbFirstLast.Checked = True
-
-        rbLastFirst = New RadioButton()
-        rbLastFirst.Text = "Last, First"
-        rbLastFirst.Location = New Point(168, 96)
-        rbLastFirst.Size = New Size(95, 22)
-
-        Dim lblHint As New Label()
-        lblHint.Text = "Copy All: 'First Last' - one name per line  |  'Last, First' - Last[TAB]First (two Excel columns)"
-        lblHint.Location = New Point(72, 122)
-        lblHint.Size = New Size(378, 16)
-        lblHint.ForeColor = Color.Gray
-        lblHint.Font = New Font("Segoe UI", 8.0F, FontStyle.Italic)
-
-        btnCopyStudent = New Button()
-        btnCopyStudent.Text = "Copy Student Name"
-        btnCopyStudent.Location = New Point(72, 148)
-        btnCopyStudent.Size = New Size(158, 32)
-
-        btnCopyAllNames = New Button()
-        btnCopyAllNames.Text = "Copy All Names"
-        btnCopyAllNames.Location = New Point(240, 148)
-        btnCopyAllNames.Size = New Size(148, 32)
-
-        grpSelect.Controls.Add(lblClass)
-        grpSelect.Controls.Add(cboClass)
-        grpSelect.Controls.Add(lblStudent)
-        grpSelect.Controls.Add(cboStudent)
-        grpSelect.Controls.Add(lblFormat)
-        grpSelect.Controls.Add(rbFirstLast)
-        grpSelect.Controls.Add(rbLastFirst)
-        grpSelect.Controls.Add(lblHint)
-        grpSelect.Controls.Add(btnCopyStudent)
-        grpSelect.Controls.Add(btnCopyAllNames)
-
-        Dim grpFolders As New GroupBox()
-        grpFolders.Text = "Create Student Folders"
-        grpFolders.Location = New Point(10, 230)
-        grpFolders.Size = New Size(460, 108)
-
-        Dim lblFolder As New Label()
-        lblFolder.Text = "Parent folder:"
-        lblFolder.Location = New Point(8, 28)
-        lblFolder.Size = New Size(82, 20)
-        lblFolder.TextAlign = ContentAlignment.MiddleRight
-
-        txtFolderPath = New TextBox()
-        txtFolderPath.Location = New Point(94, 25)
-        txtFolderPath.Size = New Size(270, 24)
-        txtFolderPath.ReadOnly = True
-
-        btnBrowseFolder = New Button()
-        btnBrowseFolder.Text = "Browse..."
-        btnBrowseFolder.Location = New Point(372, 24)
-        btnBrowseFolder.Size = New Size(78, 26)
-
-        btnCreateFolders = New Button()
-        btnCreateFolders.Text = "Create Folders"
-        btnCreateFolders.Location = New Point(94, 62)
-        btnCreateFolders.Size = New Size(148, 30)
-
-        grpFolders.Controls.Add(lblFolder)
-        grpFolders.Controls.Add(txtFolderPath)
-        grpFolders.Controls.Add(btnBrowseFolder)
-        grpFolders.Controls.Add(btnCreateFolders)
-
-        btnManageData = New Button()
-        btnManageData.Text = "Manage Classes & Students..."
-        btnManageData.Location = New Point(10, 350)
-        btnManageData.Size = New Size(230, 32)
-
-        lblStatus = New Label()
-        lblStatus.Text = "Ready."
-        lblStatus.Location = New Point(10, 380)
-        lblStatus.Size = New Size(460, 18)
-        lblStatus.ForeColor = Color.DimGray
-
-        Me.Controls.Add(grpSelect)
-        Me.Controls.Add(grpFolders)
-        Me.Controls.Add(btnManageData)
-        Me.Controls.Add(lblStatus)
-
-        tipMain.SetToolTip(btnCopyStudent, "Copies the selected student's name in the chosen format." & vbCrLf & "First Last: ""John Smith""  |  Last, First: ""Smith, John""")
-        tipMain.SetToolTip(btnCopyAllNames, "Copies every student in the selected class." & vbCrLf & "First Last: one name per line (single Excel column)." & vbCrLf & "Last, First: Last[TAB]First per line (two Excel columns).")
-        tipMain.SetToolTip(btnCreateFolders, "Creates one subfolder per student inside the chosen parent folder." & vbCrLf & "First Last: folder named ""John Smith""." & vbCrLf & "Last, First: folder named ""Smith John""." & vbCrLf & "Existing folders are silently skipped.")
-
-        AddHandler cboClass.SelectedIndexChanged, AddressOf cboClass_SelectedIndexChanged
-        AddHandler btnCopyStudent.Click, AddressOf btnCopyStudent_Click
-        AddHandler btnCopyAllNames.Click, AddressOf btnCopyAllNames_Click
-        AddHandler btnBrowseFolder.Click, AddressOf btnBrowseFolder_Click
-        AddHandler btnCreateFolders.Click, AddressOf btnCreateFolders_Click
-        AddHandler btnManageData.Click, AddressOf btnManageData_Click
     End Sub
 
     Private Sub LoadData()
@@ -231,11 +321,11 @@ Public Class frmMain
         lblStatus.ForeColor = If(isError, Color.Crimson, Color.DimGray)
     End Sub
 
-    Private Sub cboClass_SelectedIndexChanged(sender As Object, e As EventArgs)
+    Private Sub cboClass_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboClass.SelectedIndexChanged
         PopulateStudentDropdown()
     End Sub
 
-    Private Sub btnCopyStudent_Click(sender As Object, e As EventArgs)
+    Private Sub btnCopyStudent_Click(sender As Object, e As EventArgs) Handles btnCopyStudent.Click
         Dim student As Student = TryCast(cboStudent.SelectedItem, Student)
         If student Is Nothing Then
             SetStatus("Please select a student first.", True)
@@ -253,7 +343,7 @@ Public Class frmMain
         SetStatus(String.Format("Copied: {0}", name))
     End Sub
 
-    Private Sub btnCopyAllNames_Click(sender As Object, e As EventArgs)
+    Private Sub btnCopyAllNames_Click(sender As Object, e As EventArgs) Handles btnCopyAllNames.Click
         Dim sc As SchoolClass = TryCast(cboClass.SelectedItem, SchoolClass)
         If sc Is Nothing OrElse sc.Students.Count = 0 Then
             SetStatus("Please select a class with students.", True)
@@ -275,7 +365,7 @@ Public Class frmMain
         SetStatus(String.Format("Copied {0} name(s) from '{1}'.", sc.Students.Count, sc.Name))
     End Sub
 
-    Private Sub btnBrowseFolder_Click(sender As Object, e As EventArgs)
+    Private Sub btnBrowseFolder_Click(sender As Object, e As EventArgs) Handles btnBrowseFolder.Click
         Using dlg As New FolderBrowserDialog()
             dlg.Description = "Select the parent folder where student folders will be created:"
             dlg.ShowNewFolderButton = True
@@ -290,7 +380,7 @@ Public Class frmMain
         End Using
     End Sub
 
-    Private Sub btnCreateFolders_Click(sender As Object, e As EventArgs)
+    Private Sub btnCreateFolders_Click(sender As Object, e As EventArgs) Handles btnCreateFolders.Click
         Dim sc As SchoolClass = TryCast(cboClass.SelectedItem, SchoolClass)
         If sc Is Nothing OrElse sc.Students.Count = 0 Then
             SetStatus("Please select a class with students.", True)
@@ -325,7 +415,7 @@ Public Class frmMain
         SetStatus(String.Format("Done - {0} folder(s) created, {1} already existed.", created, skipped))
     End Sub
 
-    Private Sub btnManageData_Click(sender As Object, e As EventArgs)
+    Private Sub btnManageData_Click(sender As Object, e As EventArgs) Handles btnManageData.Click
         Using frm As New frmManage(_appData, _dataManager)
             frm.ShowDialog(Me)
         End Using
